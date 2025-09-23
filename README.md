@@ -173,13 +173,11 @@ LIMIT 20;
 
 **Altas tasas de respuesta y contacto**
 - La mayoría de los agentes mantienen tasas de respuesta superiores al 90% y de contacto entre 80% y 87%, lo que refleja buena eficiencia operativa.
-
 - Destacan LT CM Alexia Vergara Ruiz (94.7% respuesta / 87.3% contacto) y AS IN Carlos Ascanio Dias (94.2% / 84.3%), como ejemplos de balance entre volumen y efectividad.
 
 **Volumen de llamadas vs. minutos hablados**
 
 - Agentes como AS IN Ander Joel Cortes Vivas (919 llamadas, 14,663 min registrados) y AS IN Giovan Adolfo Torres Cardenas (665 llamadas, 13,928 min) muestran altos volúmenes y tiempo en llamadas, aunque con tasas de contacto algo más bajas (76–84%).
-
 - En contraste, agentes con menos llamadas como LT CM Alexia Vergara Ruiz (189 llamadas, 2.83 min según registro) mantienen tasas de contacto sólidas (87.3%), aunque la métrica de minutos hablados parece inconsistente y debe validarse.
 
 **Oportunidades de mejora**
@@ -189,9 +187,7 @@ LIMIT 20;
 **Acciones sugeridas**
 
 - Validar la métrica de duración antes de usarla en reportes, asegurando que refleje el tiempo real hablado.
-
 - Replicar prácticas de los agentes con >80% tasa de contacto y alto volumen.
-
 - Analizar a los agentes con alto volumen pero baja tasa de contacto, para identificar si el problema está en la gestión del tiempo, calidad de leads o técnicas de conexión.
 
 En general, los datos reflejan un equipo con **buen desempeño promedio**, aunque existe una **brecha clara entre agentes con más volumen pero menor contacto** y aquellos con menos llamadas pero más efectivos en la conexión.
@@ -246,13 +242,10 @@ ORDER BY total DESC;
 
 ### Ejemplos de categorización:
 
-**Contactados:** customer contacted, resolved
-
-**No Contactados:** voicemail, no answer, busy
-
-**Errores Técnicos:** system error, skipped, throttled
-
-**Otros:** Estados no estandarizados o ambiguos
+- **Contactados:** customer contacted, resolved
+- **No Contactados:** voicemail, no answer, busy
+- **Errores Técnicos:** system error, skipped, throttled
+- **Otros:** Estados no estandarizados o ambiguos
 
 ---
 
@@ -469,25 +462,21 @@ GROUP BY equipo;
 - **Volumen de llamadas:**
 
   - El equipo AS maneja un volumen mucho mayor de llamadas (162,448) en comparación con LT (76,290).
-
   - Esto refleja que AS asume más carga operativa y mayor esfuerzo de ejecución.
 
 - **Tasa de respuesta:**
 
   - El equipo LT destaca con una tasa de respuesta del 44.1%, frente al 23.4% de AS.
-
   - En términos prácticos, LT logra que casi la mitad de sus intentos sean atendidos, mientras que AS no alcanza ni una cuarta parte.
 
 - **Tasa de contacto:**
 
   - LT nuevamente supera con un 26.7% de efectividad frente al 14.1% de AS.
-
   - Es decir, cada llamada de LT tiene casi el doble de probabilidad de convertirse en un contacto real con el cliente.
 
 - **Contactos efectivos:**
 
   - El equipo AS genera más contactos efectivos en números absolutos (22,900) por su alto volumen de llamadas.
-
   - Sin embargo, el equipo LT, con apenas la mitad de llamadas, logra casi el mismo número (20,300), demostrando una productividad relativa mucho mayor.
 
 ---
@@ -497,7 +486,6 @@ GROUP BY equipo;
 Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo su volumen actual de llamadas:
 
 - Podría **superar los 43,000 contactos efectivos** (casi el **doble** de lo que logra hoy).
-
 - Esto **no requeriría aumentar costos ni volumen**, únicamente **replicar las prácticas y estrategias de LT** (horarios, calidad de bases, técnicas de marcación).
 
 ---
@@ -505,10 +493,8 @@ Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo
 ### Conclusión
 
 - El equipo **AS ya demuestra gran capacidad de ejecución**, pero con baja eficiencia.
-
 - El equipo **LT logra una efectividad mucho mayor con menos recursos.**
-
-- La **clave está en unir esfuerzo + eficiencia:** si AS replica el modelo de LT, el potencial de crecimiento en contactos efectivos es enorme sin incrementar la carga operativa.
+- Si el equipo AS alcanza las tasas de eficiencia de LT, MyBambu puede duplicar contactos efectivos **sin aumentar costos**, lo cual representa un crecimiento inmediato en ROI.
 
  
 ## 4. Recomendaciones Estratégicas Basadas en el Análisis de Agentes
@@ -518,27 +504,20 @@ Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo
 **Mejorar la eficiencia operativa**
 
 - Monitorear a los agentes con baja tasa de contacto para identificar si el problema está en técnicas, horarios o calidad de listas.
-
 - Replicar las prácticas de los agentes con mayor tasa de contacto y conversión como modelo para los demás.
-
 - Diseñar un playbook estandarizado con guiones, manejo de objeciones y técnicas de cierre.
-
 - Implementar role plays y entrenamientos cruzados liderados por top performers.
 
 **Optimizar la carga de trabajo**
 
 - Evitar sobrecargar a agentes con alto volumen pero baja efectividad, ya que esto diluye los resultados.
-
 - Distribuir llamadas de forma equilibrada, priorizando calidad sobre cantidad.
-
 - Asignar casos complejos a los agentes con mayor consistencia y experiencia.
 
 **Agilidad en la gestión**
 
 - Revisar los flujos de llamadas para eliminar pasos redundantes o cuellos de botella.
-
 - Implementar guías rápidas y checklists para llamadas repetitivas.
-
 - Usar dashboards en tiempo real para que supervisores puedan intervenir proactivamente.
 
 ---
@@ -548,39 +527,52 @@ Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo
 **Top performers (ej. Juliana Zapata, Paula Sepúlveda)**
 
 - Reconocer públicamente su desempeño e incentivarlos con campañas de alto valor.
-
 - Utilizarlos como mentores internos para transferir sus prácticas exitosas.
 
 **Agentes con bajo rendimiento**
 
 - Evaluar si el bajo desempeño proviene de capacitación, gestión del tiempo o calidad de leads.
-
 - Brindar coaching focalizado y establecer planes de mejora con metas claras.
-
 - Hacer seguimiento semanal para medir avances.
 
 **Agentes con desempeño intermedio (alto volumen, efectividad moderada)**
 
 - Revisar la calidad de listas asignadas para descartar problemas externos.
-
 - Reforzar la capacitación en resolución en primer contacto y técnicas de conexión.
-
 - Potenciarlos con entrenamiento cruzado, ya que representan el grupo clave para elevar el estándar general.
 
 ---
 
 ### 3. Impacto esperado
 - Mejora en la satisfacción del cliente y en la tasa de conversión.
-
 - Mayor motivación y competitividad en el equipo gracias a la retroalimentación y el reconocimiento.
-
 - Reducción de ineficiencias operativas y mejor aprovechamiento de los recursos existentes.
-
 - Potencial de crecimiento sin necesidad de aumentar costos operativos.
 
 
 ## Conclusión
 El análisis muestra un rango amplio de desempeño entre agentes: algunos altamente efectivos y otros que requieren apoyo adicional. La clave está en estandarizar las mejores prácticas, optimizar la carga operativa y reforzar la capacitación, lo que permitirá cerrar la brecha y aumentar la consistencia de resultados sin incrementar costos.
 
+## 5. Qué otras métricas sugeriría, adoptar y por qué
 
-  
+### Conversión por franja horaria
+- **Qué mide:** porcentaje de llamadas que terminan en conversión según la hora del día.  
+- **Por qué adoptarla:** permite identificar las horas con mayor efectividad, optimizando la asignación de recursos y enfocando a los mejores agentes en las franjas de mayor valor.  
+
+### Resolución en el Primer Contacto (RPC)
+- **Qué mide:** proporción de clientes que quedan resueltos en el primer intento, sin necesidad de llamadas adicionales.  
+- **Por qué adoptarla:** refleja calidad de atención y eficiencia. Un alto RPC reduce costos, evita saturación de líneas y mejora la satisfacción del cliente.  
+
+### Eficiencia relativa por agente (conversiones / llamadas efectivas)
+- **Qué mide:** el desempeño real de cada agente ajustado al número de contactos efectivos, eliminando distorsiones por volumen.  
+- **Por qué adoptarla:** ayuda a diferenciar entre agentes con alto volumen pero baja efectividad y aquellos que, aunque manejen menos contactos, logran más cierres.  
+
+---
+
+### Sugerencia adicional
+Recomendaría implementar métricas como **Conversión por Contacto** y **AHT**, pero actualmente los datos presentan inconsistencias (ej. más conversiones que contactos, duración mal registrada). Estas métricas serían extremadamente valiosas una vez se garantice que la data se estructura correctamente con identificadores únicos y duración precisa.  
+
+---
+
+### Impacto esperado
+Adoptar estas métricas no solo permitirá evaluar el desempeño operativo de manera más justa y completa, sino que también fortalecerá la **experiencia del cliente**, reducirá costos y guiará decisiones estratégicas sobre **asignación de recursos y formación de agentes**.
