@@ -88,7 +88,7 @@ LIMIT 10;
 | ANGELICA FORERO FORERO | 465                 | 13960           | 0.0333              |
 
 ---
-*Este análisis muestra los **10 agentes con mejor rendimiento** y los **10 con menor rendimiento** en términos de tasa de conversión, calculada a partir de conversiones exitosas sobre clientes únicos.*  
+*Los agentes con bajo desempeño (ej. Rodolfo Caleri, Gina Berrueta) manejan carteras muy grandes pero convierten poco. Esto puede deberse a **listas de baja calidad, horarios menos efectivos o falta de capacitación en técnicas de cierre.** En contraste, los top performers muestran que, con buena preparación y foco, incluso volúmenes altos pueden sostener una conversión estable.*  
 
 ### Insight del análisis
 - **Top performers efectivos:** Agentes como Carlos V. Caro (24%), Carlos Escoboza (19%) y María Hernández (18%) convierten entre 18 y 24 clientes por cada 100 atendidos, muy por encima del promedio. Esto refleja un dominio sólido en la gestión de oportunidades y técnicas de cierre.
@@ -162,7 +162,7 @@ LIMIT 20;
 
 ---
 
-*Este análisis muestra el desempeño de los **20 agentes con mayor número de llamadas**, evaluando sus tasas de respuesta, contacto, volumen de llamadas y minutos hablados.*
+*Las diferencias en tasa de contacto pueden deberse a **variaciones en la calidad de las listas asignadas, al nivel de experiencia del agente o incluso a diferencias en campañas.** Validar estas hipótesis ayudaría a definir si el bajo desempeño es atribuible al agente o a factores externos.*
 
 ### Observación importante
 
@@ -475,26 +475,22 @@ GROUP BY equipo;
   - Es decir, cada llamada de LT tiene casi el doble de probabilidad de convertirse en un contacto real con el cliente.
 
 - **Contactos efectivos:**
-
   - El equipo AS genera más contactos efectivos en números absolutos (22,900) por su alto volumen de llamadas.
   - Sin embargo, el equipo LT, con apenas la mitad de llamadas, logra casi el mismo número (20,300), demostrando una productividad relativa mucho mayor.
 
 ---
 
-### Impacto Potencial
-
-Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo su volumen actual de llamadas:
-
-- Podría **superar los 43,000 contactos efectivos** (casi el **doble** de lo que logra hoy).
-- Esto **no requeriría aumentar costos ni volumen**, únicamente **replicar las prácticas y estrategias de LT** (horarios, calidad de bases, técnicas de marcación).
+### Explicación de las diferencias observadas
+Una posible explicación es que **LT reciba bases de datos más depuradas o llamadas en horarios más efectivos**, mientras que AS asume más volumen en horarios con menor respuesta.  
+Otro caso puede ser que AS no esté aplicando las mismas prácticas de conexión o guiones de cierre que LT.
 
 ---
 
-### Conclusión
+### Impacto Potencial
+Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo su volumen actual de llamadas:
+- Podría **superar los 43,000 contactos efectivos** (casi el **doble** de lo que logra hoy).
+- Esto **no requeriría aumentar costos ni volumen**, únicamente **replicar las prácticas y estrategias de LT** (horarios, calidad de bases, técnicas de marcación).
 
-- El equipo **AS ya demuestra gran capacidad de ejecución**, pero con baja eficiencia.
-- El equipo **LT logra una efectividad mucho mayor con menos recursos.**
-- Si el equipo AS alcanza las tasas de eficiencia de LT, MyBambu puede duplicar contactos efectivos **sin aumentar costos**, lo cual representa un crecimiento inmediato en ROI.
 
  
 ## 4. Recomendaciones Estratégicas Basadas en el Análisis de Agentes
@@ -549,9 +545,13 @@ Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo
 - Reducción de ineficiencias operativas y mejor aprovechamiento de los recursos existentes.
 - Potencial de crecimiento sin necesidad de aumentar costos operativos.
 
+---
 
 ## Conclusión
-El análisis muestra un rango amplio de desempeño entre agentes: algunos altamente efectivos y otros que requieren apoyo adicional. La clave está en estandarizar las mejores prácticas, optimizar la carga operativa y reforzar la capacitación, lo que permitirá cerrar la brecha y aumentar la consistencia de resultados sin incrementar costos.
+El análisis muestra un rango amplio de desempeño entre agentes: algunos altamente efectivos y otros que requieren apoyo adicional. La clave está en estandarizar las mejores prácticas, optimizar la carga operativa y reforzar la capacitación, lo que permitirá cerrar la brecha y aumentar la consistencia de resultados sin incrementar costos.  
+
+En general, los datos muestran patrones claros, pero también es probable que existan **factores estructurales** (bases de datos, campañas, horarios) que expliquen las brechas de desempeño. Por eso, las recomendaciones no deben enfocarse únicamente en los agentes, sino también en validar y mejorar los procesos operativos y la calidad de la información usada en las campañas.
+
 
 ## 5. Qué otras métricas sugeriría, adoptar y por qué
 
