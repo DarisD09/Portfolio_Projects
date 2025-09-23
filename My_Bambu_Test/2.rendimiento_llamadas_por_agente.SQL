@@ -1,4 +1,4 @@
-WITH parsed AS (
+WITH llamadas_por_agente AS (
   SELECT
     split_part(users, ';', 1) AS agente_principal,
     COALESCE(NULLIF(last_wrap_up, ''), wrap_up) AS estado,
@@ -20,7 +20,7 @@ SELECT
                      OR lower(estado) LIKE '%transfer%'
                      OR lower(estado) LIKE '%answered%'
                  THEN 1 ELSE 0 END)::numeric, 3) AS tasa_contacto
-FROM parsed
+FROM llamadas_por_agente
 GROUP BY agente_principal
 HAVING COUNT(*) >= 30
 ORDER BY tasa_contacto DESC, total_llamadas DESC

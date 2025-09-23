@@ -34,61 +34,68 @@ Con los siguientes queries podremos identificar a los 10 agentes con mejor y peo
 -- Los 10 agentes con el rendimiento mas alto en terminos de conversion
 SELECT 
     nombre_agente,
-    conversiones_exitosas,
-    clientes_unicos,
-    ROUND(conversiones_exitosas::numeric / NULLIF(clientes_unicos, 0), 4) AS tasa_conversion
+    SUM(conversiones_exitosas) AS conversiones_exitosas,
+    SUM(clientes_unicos) AS clientes_unicos,
+    ROUND(SUM(conversiones_exitosas)::numeric / NULLIF(SUM(clientes_unicos), 0), 4) AS tasa_conversion
 FROM conversiones
+GROUP BY nombre_agente
+HAVING SUM(clientes_unicos) >= 50
 ORDER BY tasa_conversion DESC, conversiones_exitosas DESC
-LIMIT 10
+LIMIT 10;
 
 -- Los 10 agentes con el rendimiento mas bajo en terminos de conversion
 SELECT 
     nombre_agente,
-    conversiones_exitosas,
-    clientes_unicos,
-    ROUND(conversiones_exitosas::numeric / NULLIF(clientes_unicos, 0), 4) AS tasa_conversion
+    SUM(conversiones_exitosas) AS conversiones_exitosas,
+    SUM(clientes_unicos) AS clientes_unicos,
+    ROUND(SUM(conversiones_exitosas)::numeric / NULLIF(SUM(clientes_unicos), 0), 4) AS tasa_conversion
 FROM conversiones
+GROUP BY nombre_agente
+HAVING SUM(clientes_unicos) >= 50
 ORDER BY tasa_conversion ASC, conversiones_exitosas ASC
-LIMIT 10
+LIMIT 10;
 ```
 
 ### Top 10 Agentes por Tasa de Conversión
-| Nombre Agente      | Conversiones Exitosas | Clientes Únicos | Tasa de Conversión |
-|---------------------|-----------------------|-----------------|---------------------|
-| MARIA BALLESTEROS  | 3                     | 11              | 0.2727              |
-| CARLOS V. CARO     | 19                    | 78              | 0.2436              |
-| <span style="color:#228B22; font-weight:bold">CARLOS ESCOBOZA</span> | <span style="color:#228B22; font-weight:bold">75</span>  | <span style="color:#228B22; font-weight:bold">393</span>  | <span style="color:#228B22; font-weight:bold">0.1908</span> |
-| MARIA HERNANDEZ    | 21                    | 112             | 0.1875              |
-| MANUEL HUERTA      | 2                     | 11              | 0.1818              |
-| <span style="color:#228B22; font-weight:bold">CARLOS CARVAJAL</span> | <span style="color:#228B22; font-weight:bold">541</span> | <span style="color:#228B22; font-weight:bold">3056</span> | <span style="color:#228B22; font-weight:bold">0.1770</span> |
-| <span style="color:#228B22; font-weight:bold">KENIA COTA</span> | <span style="color:#228B22; font-weight:bold">681</span> | <span style="color:#228B22; font-weight:bold">3901</span> | <span style="color:#228B22; font-weight:bold">0.1746</span> |
-| HANNIA ACOSTA      | 3                     | 18              | 0.1667              |
-| AARON CRUZ         | 30                    | 189             | 0.1587              |
-| PALOMA GOMEZ       | 5                     | 32              | 0.1563              |
+| Nombre Agente       | Conversiones Exitosas | Clientes Únicos | Tasa de Conversión |
+|----------------------|-----------------------|-----------------|---------------------|
+| <span style="color:limegreen">CARLOS V. CARO</span> | <span style="color:limegreen">19</span>  | <span style="color:limegreen">78</span>   | <span style="color:limegreen">0.2436</span> |
+| <span style="color:limegreen">CARLOS ESCOBOZA</span> | <span style="color:limegreen">75</span>  | <span style="color:limegreen">393</span>  | <span style="color:limegreen">0.1908</span> |
+| <span style="color:limegreen">MARIA HERNANDEZ</span> | <span style="color:limegreen">21</span>  | <span style="color:limegreen">112</span>  | <span style="color:limegreen">0.1875</span> |
+| CARLOS CARVAJAL     | 541                   | 3056            | 0.1770              |
+| KENIA COTA          | 681                   | 3901            | 0.1746              |
+| AARON CRUZ          | 30                    | 189             | 0.1587              |
+| ALEX PEREA          | 731                   | 4827            | 0.1514              |
+| MARIA LOZADA        | 12                    | 83              | 0.1446              |
+| VALERIA DUARTE      | 19                    | 132             | 0.1439              |
+| MIGUEL LOPEZ MELICOFF | 73                  | 510             | 0.1431              |
+
 
 ---
 
 ### Bottom 10 Agentes por Tasa de Conversión (Orden Descendente)
-| Nombre Agente              | Conversiones Exitosas | Clientes Únicos | Tasa de Conversión |
-|-----------------------------|-----------------------|-----------------|---------------------|
-| <span style="color:#B22222; font-weight:bold">GINA BERRUETA</span>           | <span style="color:#B22222; font-weight:bold">215</span>  | <span style="color:#B22222; font-weight:bold">7664</span>  | <span style="color:#B22222; font-weight:bold">0.0281</span> |
-| <span style="color:#B22222; font-weight:bold">RODOLFO CALERI RUIBAL</span>   | <span style="color:#B22222; font-weight:bold">120</span>  | <span style="color:#B22222; font-weight:bold">4681</span>  | <span style="color:#B22222; font-weight:bold">0.0256</span> |
-| JUAN PINEDA                | 1                     | 54              | 0.0185              |
-| <span style="color:#B22222; font-weight:bold">PERLA GARCIA</span>            | <span style="color:#B22222; font-weight:bold">0</span>    | <span style="color:#B22222; font-weight:bold">71</span>    | <span style="color:#B22222; font-weight:bold">0.0000</span> |
-| AYELIN MERCADO FONTALVO    | 0                     | 14              | 0.0000              |
-| MIGUEL PALACINO            | 0                     | 3               | 0.0000              |
-| SHARIFT PELAEZ RUIZ        | 0                     | 18              | 0.0000              |
-| DIGNA SERRANO              | 0                     | 1               | 0.0000              |
-| DAHYANA BURITICA           | 0                     | 32              | 0.0000              |
-| MARVIN CONTRERAS           | 0                     | 1               | 0.0000              |
+| Nombre Agente       | Conversiones Exitosas | Clientes Únicos | Tasa de Conversión |
+|----------------------|-----------------------|-----------------|---------------------|
+| <span style="color:red">PERLA GARCIA</span> | <span style="color:red">0</span>   | <span style="color:red">71</span>   | <span style="color:red">0.0000</span> |
+| <span style="color:red">JUAN PINEDA</span>  | <span style="color:red">1</span>   | <span style="color:red">54</span>   | <span style="color:red">0.0185</span> |
+| <span style="color:red">RODOLFO CALERI RUIBAL</span> | <span style="color:red">120</span> | <span style="color:red">4681</span> | <span style="color:red">0.0256</span> |
+| GINA BERRUETA       | 215                   | 7664            | 0.0281              |
+| FABIAN LOPEZ        | 129                   | 4348            | 0.0297              |
+| JAMES GARCIA        | 91                    | 2980            | 0.0305              |
+| EDWIN MONSALVE      | 53                    | 1669            | 0.0318              |
+| MARIA ZEA           | 35                    | 1077            | 0.0325              |
+| PAULINA HARO        | 270                   | 8286            | 0.0326              |
+| ANGELICA FORERO FORERO | 465                 | 13960           | 0.0333              |
 
 ---
 *Este análisis muestra los **10 agentes con mejor rendimiento** y los **10 con menor rendimiento** en términos de tasa de conversión, calculada a partir de conversiones exitosas sobre clientes únicos.*  
 
 ### Insight del análisis
-- En el **Top 10**, destacan **Carlos Escoboza, Carlos Carvajal y Kenia Cota**, con tasas cercanas al **18–19%**, lo que significa que convierten entre **17 y 19 clientes por cada 100 atendidos**. Esto refleja una gestión eficiente y un dominio claro de técnicas de conversión.  
+- **Top performers efectivos:** Agentes como Carlos V. Caro (24%), Carlos Escoboza (19%) y María Hernández (18%) convierten entre 18 y 24 clientes por cada 100 atendidos, muy por encima del promedio. Esto refleja un dominio sólido en la gestión de oportunidades y técnicas de cierre.
 
-- En contraste, en el **Bottom 10**, agentes como **Rodolfo Caleri Ruibal, Gina Berrueta y Perla García** muestran tasas de conversión de apenas **0% a 2.8%**, lo que equivale a convertir de **0 a 3 clientes por cada 100 atendidos**, marcando una diferencia notable frente a los mejores.  
+- **Escala con calidad:** Carlos Carvajal (17.7%),  Kenia Cota (17.5%) y Alex Perea (15.1%) destacan porque, aun manejando altos volúmenes de 3,000–4,800 clientes únicos, mantienen tasas de conversión estables, logrando 17–18 conversiones por cada 100 clientes. Este balance entre cantidad y calidad debe servir como modelo para otros agentes.
+
+- **Riesgo de fuga de valor:** En contraste, agentes como Rodolfo Caleri (2.5%), Gina Berrueta (2.8%) y Angélica Forero (3.3%) atienden grandes carteras (4,600–13,900 clientes) pero apenas convierten entre 2 y 3 clientes por cada 100 atendidos. Esto implica que la mayoría de las oportunidades no generan retorno.
 
 - Esta brecha evidencia la necesidad de **replicar las buenas prácticas de los top performers**, fortalecer la capacitación en los agentes con bajo desempeño y evaluar la calidad de las listas de clientes asignadas para asegurar condiciones más equitativas.  
 
@@ -157,19 +164,35 @@ LIMIT 20;
 
 *Este análisis muestra el desempeño de los **20 agentes con mayor número de llamadas**, evaluando sus tasas de respuesta, contacto, volumen de llamadas y minutos hablados.*
 
+### Observación importante
+
+**Se detecta una inconsistencia en la métrica de minutos hablados:** por ejemplo, LT CM Alexia Vergara Ruiz aparece con 189 llamadas y solo 2.83 minutos en total, lo que equivale a menos de 1 segundo por llamada. Esto sugiere que el campo **duration_ms** podría no estar reflejando el tiempo real de conversación, sino quizás un valor truncado o mal mapeado en la base de datos. Esta limitación debe considerarse antes de tomar decisiones basadas en esta métrica.
+
+---
 ### Insight del análisis
 
-1. **Altas tasas de respuesta y contacto**  
-   - La mayoría de los agentes mantienen tasas de **respuesta superiores al 90%** y de **contacto entre 80% y 87%**, lo que refleja una buena eficiencia operativa.  
-   - Destacan **LT CM Alexia Vergara Ruiz (94.7% respuesta / 87.3% contacto)** y **AS IN Carlos Ascanio Dias (94.2% / 84.3%)** como ejemplos de balance entre volumen de llamadas y efectividad.
+**Altas tasas de respuesta y contacto**
+- La mayoría de los agentes mantienen tasas de respuesta superiores al 90% y de contacto entre 80% y 87%, lo que refleja buena eficiencia operativa.
 
-2. **Volumen de llamadas vs. tiempo hablado**  
-   - Agentes como **AS IN Ander Joel Cortes Vivas (919 llamadas, 14.66 horas)** y **AS IN Giovan Adolfo Torres Cardenas (665 llamadas, 13.92 horas)** muestran **altos volúmenes y minutos hablados**, pero con tasas de contacto ligeramente más bajas (76–84%).  
-   - En contraste, agentes con menos llamadas como **LT CM Alexia Vergara Ruiz (189 llamadas, 2.83 horas)** mantienen una tasa de contacto más sólida (87.3%), lo que puede sugerir mayor efectividad por interacción.
+- Destacan LT CM Alexia Vergara Ruiz (94.7% respuesta / 87.3% contacto) y AS IN Carlos Ascanio Dias (94.2% / 84.3%), como ejemplos de balance entre volumen y efectividad.
 
-3. **Oportunidades de mejora**  
-   - Algunos agentes presentan **tasas de contacto por debajo del 78%**, como **Pedro Penichet Solorio (75.7%)** y **Kelly Johanna Torres (75%)**. Esto indica áreas donde se podría mejorar la calidad de los leads asignados o fortalecer la capacitación en técnicas de conexión.  
-   - Se recomienda un análisis de **calidad de datos (listas de clientes)** y **revisión de guiones de llamada** para aumentar la efectividad en los agentes con menor rendimiento.
+**Volumen de llamadas vs. minutos hablados**
+
+- Agentes como AS IN Ander Joel Cortes Vivas (919 llamadas, 14,663 min registrados) y AS IN Giovan Adolfo Torres Cardenas (665 llamadas, 13,928 min) muestran altos volúmenes y tiempo en llamadas, aunque con tasas de contacto algo más bajas (76–84%).
+
+- En contraste, agentes con menos llamadas como LT CM Alexia Vergara Ruiz (189 llamadas, 2.83 min según registro) mantienen tasas de contacto sólidas (87.3%), aunque la métrica de minutos hablados parece inconsistente y debe validarse.
+
+**Oportunidades de mejora**
+
+- Algunos agentes presentan tasas de contacto por debajo del 78%, como Pedro Penichet Solorio (75.7%) y Kelly Johanna Torres (75%). Esto sugiere revisar la calidad de las listas o reforzar capacitación en técnicas de conexión.
+
+**Acciones sugeridas**
+
+- Validar la métrica de duración antes de usarla en reportes, asegurando que refleje el tiempo real hablado.
+
+- Replicar prácticas de los agentes con >80% tasa de contacto y alto volumen.
+
+- Analizar a los agentes con alto volumen pero baja tasa de contacto, para identificar si el problema está en la gestión del tiempo, calidad de leads o técnicas de conexión.
 
 En general, los datos reflejan un equipo con **buen desempeño promedio**, aunque existe una **brecha clara entre agentes con más volumen pero menor contacto** y aquellos con menos llamadas pero más efectivos en la conexión.
 
@@ -179,6 +202,62 @@ En general, los datos reflejan un equipo con **buen desempeño promedio**, aunqu
 Este query busca analizar la distribución de llamadas según su estado final (ej. message played, no answer, voicemail, customer contacted), con el fin de identificar en qué categorías se concentran más intentos y así medir la efectividad real del contacto.
 
 ```SQL
+-- Contactabilidad por estado (Categorizado)
+WITH llamadas_normalizadas AS (
+    SELECT 
+        CASE
+            WHEN lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) IN 
+                 ('customer contacted','resolved','answered','transfer') 
+                THEN 'Contactados'
+            WHEN lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) IN 
+                 ('no answer','voicemail','busy','out of service') 
+                THEN 'No Contactados'
+            WHEN lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) LIKE 'system error%' 
+              OR lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) LIKE '%skipped%' 
+              OR lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) LIKE '%throttled%' 
+              OR lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) = 'fax' 
+                THEN 'Errores Técnicos'
+            ELSE 'Otros'
+        END AS categoria_estado
+    FROM llamadas
+)
+SELECT 
+    categoria_estado,
+    COUNT(*) AS total,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS porcentaje
+FROM llamadas_normalizadas
+GROUP BY categoria_estado
+ORDER BY total DESC;
+```
+---
+
+*El análisis revela que casi el 92% de las llamadas no logran contacto directo con clientes, mientras que solo un 6% corresponde a interacciones efectivas. Esto refleja una gran brecha entre intentos y resultados reales.*
+
+### Contactabilidad por Estado (Categorizado)
+
+| Categoría        | Total   | Porcentaje |
+|------------------|---------|------------|
+| Otros            | 408,573 | 65.31%     |
+| No Contactados   | 169,638 | 27.11%     |
+| Contactados      | 37,704  | 6.03%      |
+| Errores Técnicos | 9,720   | 1.55%      |
+
+---
+
+### Ejemplos de categorización:
+
+**Contactados:** customer contacted, resolved
+
+**No Contactados:** voicemail, no answer, busy
+
+**Errores Técnicos:** system error, skipped, throttled
+
+**Otros:** Estados no estandarizados o ambiguos
+
+---
+
+```SQL
+-- Contactabilidad por estado (Detallado)
 SELECT 
     lower(COALESCE(NULLIF(last_wrap_up,''), wrap_up)) AS estado,
     COUNT(*) AS total
@@ -187,7 +266,7 @@ GROUP BY 1
 ORDER BY total DESC;
 ```
 
-### Contactabilidad por Estado
+### Contactabilidad por Estado (Detallado)
 
 <div style="max-height:300px; overflow-y:auto;">
 
@@ -243,7 +322,6 @@ ORDER BY total DESC;
 </div>
 
 ---
-*Este análisis muestra la contactabilidad de las llamadas por estado, evaluando los intentos exitosos frente a aquellos que no generaron interacción, así como las incidencias técnicas que afectan la efectividad general del proceso.*
 
 ### Insight del análisis
 
@@ -286,47 +364,47 @@ ORDER BY hora;
 
 <div style="max-height:300px; overflow-y:auto;">
 
+## 3.1. Contactabilidad por Hora
+
 | Hora | Total Llamadas | Llamadas Respondidas | Llamadas Contactadas |
 |------|----------------|-----------------------|-----------------------|
 | 0    | 193            | 192                   | 0                     |
 | 7    | 7              | 7                     | 4                     |
-| 8    | 18,587         | 13,044                | 1,481                 |
-| 9    | 32,499         | 25,564                | 2,224                 |
-| 10   | 42,583         | 30,343                | 3,306                 |
-| 11   | 57,326         | 36,048                | 4,685                 |
-| 12   | 59,579         | 37,812                | 5,222                 |
-| 13   | 55,436         | 37,463                | 4,511                 |
-| 14   | 66,950         | 46,667                | 5,061                 |
-| 15   | 51,731         | 34,636                | 4,800                 |
-| 16   | 48,344         | 33,167                | 4,048                 |
-| 17   | 43,648         | 31,023                | 3,501                 |
-| 18   | 42,672         | 30,720                | 3,029                 |
-| 19   | 35,910         | 28,318                | 2,228                 |
-| 20   | 26,511         | 24,161                | 904                   |
-| 21   | 21,423         | 20,853                | 112                   |
-| 22   | 13,290         | 12,778                | 86                    |
-| 23   | 8,946          | 8,564                 | 63                    |
+| 8    | 18,587         | 13,044                | 1,101                 |
+| 9    | 32,499         | 25,564                | 1,712                 |
+| 10   | 42,583         | 30,343                | 2,668                 |
+| 11   | 57,326         | 36,048                | 3,891                 |
+| 12   | 59,579         | 37,812                | 4,363                 |
+| 13   | 55,436         | 37,463                | 3,752                 |
+| 14   | 66,950         | 46,667                | 4,315                 |
+| 15   | 51,731         | 34,636                | 4,077                 |
+| 16   | 48,344         | 33,167                | 3,441                 |
+| 17   | 43,648         | 31,023                | 2,927                 |
+| 18   | 42,672         | 30,720                | 2,603                 |
+| 19   | 35,910         | 28,318                | 1,869                 |
+| 20   | 26,511         | 24,161                | 733                   |
+| 21   | 21,423         | 20,853                | 106                   |
+| 22   | 13,290         | 12,778                | 84                    |
+| 23   | 8,946          | 8,564                 | 58                    |
+
 
 </div>
 
 ---
-*El análisis revela que la mayor concentración de llamadas y contactos efectivos ocurre entre las 10:00 y las 15:00 horas, siendo estas las franjas más productivas. En cambio, durante la noche la efectividad disminuye, con menos contactos logrados a pesar de que aún se realizan intentos de llamada.*
+*Nota:* **“Llamadas respondidas”** incluye interacciones que no siempre culminaron en un contacto válido (ej. contestaciones sin conversación útil). Por eso, la métrica clave para evaluar efectividad real es **“Llamadas contactadas”**.
 
-### Insights del Análisis de Llamadas por Hora
+---
 
-1. **Mayor productividad en la mañana y primeras horas de la tarde**  
-   - Los picos de llamadas y contactos efectivos se concentran entre **10:00 y 15:00 horas**, donde no solo se realizan más intentos, sino que también se logra una mayor tasa de contacto.  
-   - Este rango horario debe considerarse como la **franja óptima de operación** para maximizar la efectividad.
+### Insights del Análisis
 
-2. **Descenso progresivo en la tarde-noche**  
-   - A partir de las **17:00 horas**, aunque sigue habiendo un volumen alto de llamadas, el número de contactos efectivos comienza a caer de manera sostenida.  
-   - Entre **20:00 y 23:00**, la productividad es mínima: se realizan intentos, pero con muy pocos resultados en términos de contactos.
+El análisis muestra la distribución de llamadas por hora, diferenciando entre intentos totales, llamadas respondidas y contactos efectivos.  
+La mayor productividad ocurre entre **10:00 y 15:00 horas**, mientras que en la noche (20:00–23:00) se observa un uso ineficiente de recursos.
 
-3. **Oportunidades de optimización**  
-   - Reorientar recursos hacia las horas más productivas podría mejorar la tasa de éxito global.  
-   - Reducir llamadas en horarios nocturnos ayudaría a optimizar tiempo y costos, ya que la **efectividad es muy baja en esas franjas**.
+- **Horas pico (10:00–15:00):** mayores volúmenes e interacciones efectivas, con más de **4,000 contactos por hora** en promedio.  
+- **Descenso tarde-noche:** a partir de las **17:00 h**, las llamadas se mantienen altas pero los contactos efectivos caen progresivamente.  
+- **Horas nocturnas (20:00–23:00):** se realizaron más de **21,000 intentos** con apenas **250 contactos efectivos**, mostrando baja rentabilidad operativa.  
 
-**Conclusión:** El análisis muestra que las **horas laborales centrales (10:00–15:00)** son las más estratégicas para maximizar contactos, mientras que las horas nocturnas aportan poco valor operativo.
+**Conclusión:** Los esfuerzos deberían concentrarse en **horas laborales centrales (10:00–15:00)**, reduciendo llamadas en la noche para mejorar la eficiencia global.
 
 
 ### 3.2. Contactabilidad por Equipo
@@ -343,16 +421,35 @@ WITH base AS (
 SELECT
   equipo,
   COUNT(*) AS total_llamadas,
-  ROUND(AVG(CASE WHEN lower(estado) NOT LIKE '%voicemail%' 
-                     AND lower(estado) NOT LIKE '%no answer%'
-                     AND lower(estado) NOT LIKE '%timeout%'
-                     AND lower(estado) NOT LIKE '%system error%'
-                 THEN 1 ELSE 0 END)::numeric, 3) AS tasa_respuesta,
-  ROUND(AVG(CASE WHEN lower(estado) LIKE '%customer contacted%'
-                     OR lower(estado) LIKE '%resolved%'
-                     OR lower(estado) LIKE '%transfer%'
-                     OR lower(estado) LIKE '%answered%'
-                 THEN 1 ELSE 0 END)::numeric, 3) AS tasa_contacto
+  ROUND(100.0 * AVG(
+      CASE 
+        WHEN lower(estado) NOT LIKE '%voicemail%' 
+             AND lower(estado) NOT LIKE '%no answer%'
+             AND lower(estado) NOT LIKE '%timeout%'
+             AND lower(estado) NOT LIKE '%system error%'
+        THEN 1 ELSE 0 END
+    )::numeric, 1
+  ) AS tasa_respuesta,
+  ROUND(
+    100.0 * AVG(
+      CASE 
+        WHEN lower(estado) LIKE '%customer contacted%'
+             OR lower(estado) LIKE '%resolved%'
+             OR lower(estado) LIKE '%transfer%'
+             OR lower(estado) LIKE '%answered%'
+        THEN 1 ELSE 0 END
+    )::numeric, 1
+  ) AS tasa_contacto,
+  ROUND(
+    COUNT(*) * AVG(
+      CASE 
+        WHEN lower(estado) LIKE '%customer contacted%'
+             OR lower(estado) LIKE '%resolved%'
+             OR lower(estado) LIKE '%transfer%'
+             OR lower(estado) LIKE '%answered%'
+        THEN 1 ELSE 0 END
+    )::numeric
+  ) AS contactos_efectivos
 FROM base
 WHERE equipo IN ('AS','LT')
 GROUP BY equipo;
@@ -361,35 +458,61 @@ GROUP BY equipo;
 
 ### Resultados Comparativos por Equipo
 
-| Equipo | Total Llamadas | Tasa de Respuesta | Tasa de Contacto |
-|--------|----------------|-------------------|------------------|
-| AS     | 162,448        | 23.4%             | 14.1%            |
-| LT     | 76,290         | 44.1%             | 26.7%            |
+| Equipo | Total Llamadas | Tasa de Respuesta | Tasa de Contacto | Contactos Efectivos |
+|--------|----------------|-------------------|------------------|----------------------|
+| AS     | 162,448        | 23.4%             | 14.1%            | 22,900               |
+| LT     | 76,290         | 44.1%             | 26.7%            | 20,300               |
+
 ---
 *El análisis muestra que, aunque el equipo AS realizó más llamadas (162,448), el equipo LT obtuvo una tasa de respuesta (44.1%) y contacto (26.7%) mucho más alta que la del equipo AS (23.4% y 14.1% respectivamente).*
 
-- **Total de llamadas** (columna gris):  
-  - El equipo **AS** tiene un volumen mucho mayor de llamadas (**162,448**) comparado con el equipo **LT** (**76,290**).  
-  - Esto refleja que AS maneja más carga operativa.  
+- **Volumen de llamadas:**
 
-- **Tasa de respuesta** (columna azul):  
-  - El equipo **LT** presenta una tasa de respuesta mucho más alta (**44.1%**) frente al equipo **AS** (**23.4%**).  
-  - Esto significa que LT logra atender exitosamente casi la mitad de las llamadas, mientras que AS no alcanza ni una cuarta parte.  
+  - El equipo AS maneja un volumen mucho mayor de llamadas (162,448) en comparación con LT (76,290).
 
-- **Tasa de contacto** (columna verde):  
-  - Nuevamente, **LT** supera con un **26.7%** de efectividad, mientras que **AS** se queda en **14.1%**.  
-  - Es decir, LT convierte más llamadas en interacciones reales con clientes. 
+  - Esto refleja que AS asume más carga operativa y mayor esfuerzo de ejecución.
 
- **En palabras simples:**  El equipo **AS ya trabaja con un gran esfuerzo**, realizando más de **162 mil llamadas**, pero gran parte de ese esfuerzo no se traduce en contactos efectivos.  
-En cambio, el equipo **LT, con la mitad de llamadas**, logra casi los mismos resultados gracias a una **tasa de respuesta y contacto mucho más alta**.  
+- **Tasa de respuesta:**
 
-**La oportunidad está en replicar las prácticas de LT dentro de AS**:  
-- Si AS mantuviera su volumen pero alcanzara las tasas de respuesta de LT, **podría casi duplicar sus contactos efectivos (+20 mil adicionales)**.  
-- Esto no implica trabajar más, sino **trabajar de forma más inteligente**, ajustando horarios, calidad de bases de datos y estrategias de marcación.  
+  - El equipo LT destaca con una tasa de respuesta del 44.1%, frente al 23.4% de AS.
 
-En conclusión: **AS ya demuestra capacidad de ejecución, pero necesita la eficiencia de LT. Si unimos esfuerzo con efectividad, el potencial de crecimiento es enorme sin necesidad de aumentar el costo operativo.**
+  - En términos prácticos, LT logra que casi la mitad de sus intentos sean atendidos, mientras que AS no alcanza ni una cuarta parte.
+
+- **Tasa de contacto:**
+
+  - LT nuevamente supera con un 26.7% de efectividad frente al 14.1% de AS.
+
+  - Es decir, cada llamada de LT tiene casi el doble de probabilidad de convertirse en un contacto real con el cliente.
+
+- **Contactos efectivos:**
+
+  - El equipo AS genera más contactos efectivos en números absolutos (22,900) por su alto volumen de llamadas.
+
+  - Sin embargo, el equipo LT, con apenas la mitad de llamadas, logra casi el mismo número (20,300), demostrando una productividad relativa mucho mayor.
+
+---
+
+### Impacto Potencial
+
+Si el equipo **AS alcanzara las tasas de eficiencia del equipo LT**, manteniendo su volumen actual de llamadas:
+
+- Podría **superar los 43,000 contactos efectivos** (casi el **doble** de lo que logra hoy).
+
+- Esto **no requeriría aumentar costos ni volumen**, únicamente **replicar las prácticas y estrategias de LT** (horarios, calidad de bases, técnicas de marcación).
+
+---
+
+### Conclusión
+
+- El equipo **AS ya demuestra gran capacidad de ejecución**, pero con baja eficiencia.
+
+- El equipo **LT logra una efectividad mucho mayor con menos recursos.**
+
+- La **clave está en unir esfuerzo + eficiencia:** si AS replica el modelo de LT, el potencial de crecimiento en contactos efectivos es enorme sin incrementar la carga operativa.
+
 
 ## 4. Métricas adicionales sugeridas
+
 ### A) Conversion por contacto
 Esto ayudara a identificar la efectividad de los agentes en términos de tasa de conversión sobre llamadas contactadas, para evaluar qué tan eficientes son convirtiendo contactos en resultados.
 
@@ -522,10 +645,11 @@ flagged AS (
 SELECT
   agente_principal,
   COUNT(*) FILTER (WHERE answered_flag=1) AS answered_calls,
-  ROUND(SUM(duration_ms)/60000.0,2) AS total_tiempo_min,
-  ROUND(
-    (SUM(duration_ms)/60000.0) / NULLIF(COUNT(*) FILTER (WHERE answered_flag=1),0)
-  ,2) AS AHT_minutos
+ ROUND(SUM(duration_ms) FILTER (WHERE answered_flag=1)/60000.0, 2) AS total_tiempo_min,
+ROUND(
+  (SUM(duration_ms) FILTER (WHERE answered_flag=1)/60000.0)
+  / NULLIF(COUNT(*) FILTER (WHERE answered_flag=1),0)
+, 2) AS aht_minutos
 FROM flagged
 GROUP BY agente_principal
 HAVING COUNT(*) >= 30
@@ -593,47 +717,78 @@ El análisis revela que existe una gran variabilidad en el AHT entre agentes: al
 - **Eficiencia vs. calidad:** un AHT muy bajo (ej. 0.10–0.30 min) puede indicar que las llamadas son resueltas rápidamente, pero también puede significar interacciones superficiales o falta de oportunidad de conversión.  
 
 - **Oportunidad de mejora:** los agentes con AHT elevado deben ser revisados para entender si se debe a **procesos más complejos o ineficiencia**, mientras que los de AHT extremadamente bajo requieren evaluación para confirmar que las llamadas sean **efectivas y de calidad**.  
----
+
  
-## Recomendaciones Estratégicas Basadas en el Análisis de Agentes
+## 4. Recomendaciones Estratégicas Basadas en el Análisis de Agentes
 
-### 1. Balancear eficiencia y calidad
-- Monitorear a los agentes con **AHT muy bajos (<0.3 min)** para asegurar que las llamadas sean de calidad y no solo rápidas.  
-- Revisar casos con **AHT altos (>1 min)** para identificar si se debe a procesos complejos o a falta de eficiencia operativa.  
+### 1. Optimización del proceso
 
-### 2. Segmentación de agentes según desempeño
-- **Agentes de alto volumen y bajo AHT (ej. Juliana Zapata, Paula Sepulveda):** son eficientes, pero deben ser evaluados en conversión para confirmar efectividad.  
-- **Agentes con alto AHT (ej. Sergio Acosta):** revisar su proceso y brindar coaching para reducir tiempos sin perder calidad.  
-- **Agentes intermedios:** potencial para entrenamiento cruzado y compartir mejores prácticas.  
+**Mejorar la eficiencia operativa**
 
-### 3. Capacitación y coaching
-- Implementar **capacitaciones focalizadas** para agentes con mayor AHT.  
-- Crear **sesiones de role play** con agentes de mejor desempeño para estandarizar buenas prácticas.  
-- Enfocarse en mejorar **resolución en primer contacto** y técnicas de cierre.  
+- Monitorear a los agentes con baja tasa de contacto para identificar si el problema está en técnicas, horarios o calidad de listas.
 
-### 4. Optimización del proceso operativo
-- Revisar **flujos de llamadas** para identificar pasos redundantes o cuellos de botella.  
-- Implementar **guías rápidas y checklists** para mejorar la eficiencia en llamadas repetitivas.  
-- Usar dashboards en tiempo real para que supervisores puedan intervenir de forma proactiva.  
+- Replicar las prácticas de los agentes con mayor tasa de contacto y conversión como modelo para los demás.
 
-### 5. Toma de decisiones estratégicas
-- Usar las métricas de **AHT, volumen de llamadas y conversión** como un conjunto, no de manera aislada.  
-- Incentivar con **bonos o reconocimientos** a los agentes que logren el balance correcto entre volumen y calidad.  
-- Asignar **llamadas más complejas** a agentes con mayor experiencia y consistencia en resultados.  
+- Diseñar un playbook estandarizado con guiones, manejo de objeciones y técnicas de cierre.
 
-### 6. Impacto esperado
-- Reducción del tiempo promedio de llamadas sin comprometer calidad.  
-- Mejora en la **satisfacción del cliente** y en la **tasa de conversión**.  
-- Mayor motivación y competitividad en el equipo gracias a la retroalimentación y reconocimiento.  
+- Implementar role plays y entrenamientos cruzados liderados por top performers.
+
+**Optimizar la carga de trabajo**
+
+- Evitar sobrecargar a agentes con alto volumen pero baja efectividad, ya que esto diluye los resultados.
+
+- Distribuir llamadas de forma equilibrada, priorizando calidad sobre cantidad.
+
+- Asignar casos complejos a los agentes con mayor consistencia y experiencia.
+
+**Agilidad en la gestión**
+
+- Revisar los flujos de llamadas para eliminar pasos redundantes o cuellos de botella.
+
+- Implementar guías rápidas y checklists para llamadas repetitivas.
+
+- Usar dashboards en tiempo real para que supervisores puedan intervenir proactivamente.
+
 ---
+
+### 2. Decisiones sobre agentes según rendimiento
+
+**Top performers (ej. Juliana Zapata, Paula Sepúlveda)**
+
+- Reconocer públicamente su desempeño e incentivarlos con campañas de alto valor.
+
+- Utilizarlos como mentores internos para transferir sus prácticas exitosas.
+
+**Agentes con bajo rendimiento**
+
+- Evaluar si el bajo desempeño proviene de capacitación, gestión del tiempo o calidad de leads.
+
+- Brindar coaching focalizado y establecer planes de mejora con metas claras.
+
+- Hacer seguimiento semanal para medir avances.
+
+**Agentes con desempeño intermedio (alto volumen, efectividad moderada)**
+
+- Revisar la calidad de listas asignadas para descartar problemas externos.
+
+- Reforzar la capacitación en resolución en primer contacto y técnicas de conexión.
+
+- Potenciarlos con entrenamiento cruzado, ya que representan el grupo clave para elevar el estándar general.
+
+---
+
+### 3. Impacto esperado
+- Mejora en la satisfacción del cliente y en la tasa de conversión.
+
+- Mayor motivación y competitividad en el equipo gracias a la retroalimentación y el reconocimiento.
+
+- Reducción de ineficiencias operativas y mejor aprovechamiento de los recursos existentes.
+
+- Potencial de crecimiento sin necesidad de aumentar costos operativos.
+
 
 ## Conclusión
-El análisis muestra que el equipo tiene un rango muy amplio en desempeño, con agentes altamente eficientes y otros que requieren apoyo adicional. Optimizar procesos y enfocar la capacitación permitirá cerrar esa brecha, incrementando la consistencia general.  
-
-## Reflexiones Finales
-1. La clave no es solo reducir el tiempo de llamada, sino asegurar que cada interacción sea **efectiva y de calidad**.  
-2. Un modelo de gestión que combine **coaching, métricas balanceadas e incentivos claros** permitirá escalar la productividad de todo el equipo.  
-3. Este enfoque no solo impactará en la **satisfacción del cliente**, sino también en la **moral y motivación de los agentes**, generando un círculo positivo de mejora continua.  
+El análisis muestra un rango amplio de desempeño entre agentes: algunos altamente efectivos y otros que requieren apoyo adicional. La clave está en estandarizar las mejores prácticas, optimizar la carga operativa y reforzar la capacitación, lo que permitirá cerrar la brecha y aumentar la consistencia de resultados sin incrementar costos.
 
 
   
