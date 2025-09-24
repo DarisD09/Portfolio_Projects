@@ -20,7 +20,11 @@ Los datos provienen de registros de **Conversiones** y **Llamadas**.
 - **SQL (PostgreSQL):** creación de tablas, carga de datos y consultas de análisis.  
 - **Power BI:** construcción de dashboards interactivos.  
 - **Git & GitHub:** control de versiones y documentación.  
----
+
+## Dashboard Interactivo  
+Para explorar más a fondo los datos y métricas en tiempo real, puede acceder al dashboard de Power BI en el siguiente enlace: [Ver Dashboard](https://app.powerbi.com/view?r=eyJrIjoiZDNmMWZiZmMtMDI2NC00YWZhLTgzMTQtMTYyM2YwOGI2OTBjIiwidCI6IjJjZmNkYzkzLTRmM2MtNDExOS05NDAyLWMwOTdlYTA2MmU2YyJ9)  
+
+
 ## El Análisis
 Cada **SQL Query** de este proyecto está diseñada para responder a un aspecto clave del negocio en el área de **atención al cliente y ventas** de MyBambu. 
 
@@ -576,3 +580,11 @@ Recomendaría implementar métricas como **Conversión por Contacto** y **AHT**,
 
 ### Impacto esperado
 Adoptar estas métricas no solo permitirá evaluar el desempeño operativo de manera más justa y completa, sino que también fortalecerá la **experiencia del cliente**, reducirá costos y guiará decisiones estratégicas sobre **asignación de recursos y formación de agentes**.
+
+---
+
+## Firmado por:
+**Daris Daniel Abad**
+
+**Fecha:** 24 de septiembre de 2025
+
