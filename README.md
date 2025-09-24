@@ -170,7 +170,7 @@ LIMIT 20;
 
 ### Observación importante
 
-**Se detecta una inconsistencia en la métrica de minutos hablados:** por ejemplo, LT CM Alexia Vergara Ruiz aparece con 189 llamadas y solo 2.83 minutos en total, lo que equivale a menos de 1 segundo por llamada. Esto sugiere que el campo **duration_ms** podría no estar reflejando el tiempo real de conversación, sino quizás un valor truncado o mal mapeado en la base de datos. Esta limitación debe considerarse antes de tomar decisiones basadas en esta métrica.
+**Cuando estaba analizando la data pude detectar una inconsistencia en la métrica de minutos hablados:** por ejemplo, LT CM Alexia Vergara Ruiz aparece con 189 llamadas y solo 2.83 minutos en total, lo que equivale a menos de 1 segundo por llamada. Esto sugiere que el campo **duration_ms** podría no estar reflejando el tiempo real de conversación, sino quizás un valor truncado o mal mapeado en la base de datos. Esta limitación debe considerarse antes de tomar decisiones basadas en esta métrica.
 
 ---
 ### Insight del análisis
