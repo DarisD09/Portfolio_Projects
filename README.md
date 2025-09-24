@@ -17,9 +17,9 @@ La meta es identificar agentes con alto y bajo rendimiento, entender los factore
 Los datos provienen de registros de **Conversiones** y **Llamadas**.
 
 ## Herramientas Utilizadas
-- **SQL (PostgreSQL):** 
-- **Power BI:**  
-- **Git & GitHub:**   
+- **SQL (PostgreSQL)** 
+- **Power BI**  
+- **Git & GitHub**   
 
 ## Dashboard Interactivo  
 Para explorar más a fondo los datos y métricas en tiempo real, puede acceder al dashboard de Power BI en el siguiente enlace: [Ver Dashboard](https://app.powerbi.com/view?r=eyJrIjoiZDNmMWZiZmMtMDI2NC00YWZhLTgzMTQtMTYyM2YwOGI2OTBjIiwidCI6IjJjZmNkYzkzLTRmM2MtNDExOS05NDAyLWMwOTdlYTA2MmU2YyJ9)  
