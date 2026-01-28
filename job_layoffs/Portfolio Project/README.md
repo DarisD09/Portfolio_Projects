@@ -93,7 +93,7 @@ ORDER BY
 | 2021 | 2     | 868           | -87.26         |
 | 2021 | 3     | 47            | -94.59         |
 | 2021 | 4     | 261           | 455.32         |
-
+---
 **Note:** Month-over-Month (MoM) change is calculated **within each year**.  
 January values are shown as `NULL` because there is no prior month available for comparison within the same year.
 
