@@ -21,9 +21,9 @@ This case study was built to answer a few core questions:
 ---
 
 ##  Tools Used
-- **PostgreSQL** – data aggregation, window functions, and time-series analysis  
-- **Git & GitHub** – version control and documentation  
-- **Power BI** *(planned)* – data visualization and dashboarding  
+- **PostgreSQL** 
+- **Git & GitHub** 
+- **Power BI** 
 
 ---
 
