@@ -33,4 +33,4 @@ FROM
 WHERE
     country_rank = 1
 ORDER BY
-    month_of_year;
+    month_of_year; 
