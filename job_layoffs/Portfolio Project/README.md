@@ -6,7 +6,7 @@ This project explores global layoff data from 2020 to 2023 to understand **how l
 The goal of the analysis is not just to count layoffs, but to understand their **patterns, volatility, and underlying behavior** at both a short-term (monthly) and long-term (yearly) level.  
 All analysis was done using **SQL**, with the output structured to support dashboard visualization.
 
----
+
 
 ##  Questions This Project Answers
 This case study was built to answer a few core questions:
@@ -18,14 +18,18 @@ This case study was built to answer a few core questions:
 - Which industries experience the most severe layoffs per event?
 - Can we objectively identify periods of unusually high or low layoff activity?
 
----
+
 
 ##  Tools Used
 - **PostgreSQL** 
+- **VS Code**
 - **Git & GitHub** 
 - **Power BI** 
 
----
+## Power BI Dashboard
+
+🔗 **Live Dashboard:**  
+[Global Layoffs Dashboard – Power BI](https://app.powerbi.com/view?r=eyJrIjoiZjc4M2I4YmItMTNmOC00NmVlLTg0N2UtNGYwNjFlMzFjM2Y4IiwidCI6IjJjZmNkYzkzLTRmM2MtNDExOS05NDAyLWMwOTdlYTA2MmU2YyJ9)
 
 ##  How the Analysis Was Done
 Each SQL file in this project focuses on answering **one specific analytical question**. This keeps the analysis modular, easy to follow, and easy to validate.
@@ -106,7 +110,7 @@ Layoffs tend to move in sharp spikes rather than smooth trends. Periods of econo
 ###  Year-over-Year Changes
 **Query:**  `year_over_year_changes.sql`
 
-This analysis looks at total layoffs per year and calculates the **year-over-year percentage change**.
+This section summarizes total layoffs at a yearly level and calculates the year-over-year percentage change to highlight broader structural shifts.
 
 ```SQL
 --- Year over Year changes
@@ -238,10 +242,8 @@ Not every high-layoff month is an anomaly. This approach highlights only the mon
 ### Layoff Frequency by Industry
 **Query:** `industry_layoffs_frequency.sql`
 
-This query measures how often layoffs occur in each industry by counting:
-- Total layoff events  
-- Events per company  
-- Events per active month
+This section examines how frequently layoffs occur across industries by analyzing event volume, company participation, and active months.
+
 
 ```SQL
 --- Industry Layoff Frequency
@@ -308,7 +310,8 @@ Some industries experience layoffs frequently, even if the total number of affec
 ###  Layoff Severity by Industry
 **Query:** `average_layoffs_per_event.sql`
 
-This analysis focuses on **severity**, measuring the average number of employees affected per layoff event.
+This section measures **layoff severity** by calculating the average number of employees affected per layoff event.
+
 
 ```SQL
 --- average layoffs per event
@@ -368,7 +371,7 @@ Industries with fewer layoff events can still be high-risk if those events tend 
 ---
 
 ###  Country with the Most Layoffs Each Month
-**File:** `top_country_per_month.sql`
+**Query:** `top_country_per_month.sql`
 
 Countries are ranked monthly based on total layoffs, identifying the top country for each period.
 
@@ -430,9 +433,8 @@ ORDER BY
 | 2021-06   | United States  | 2,434         | 1    |
 ---
 **Insight:**  
-*The United States leads in most months, though other countries temporarily emerge during region-specific disruptions.*
+The United States leads in most months, though other countries temporarily emerge during region-specific disruptions.
 
----
 
 ## Key Takeaways
 - Layoffs behave differently across industries: some are driven by **frequency**, others by **severity**
@@ -440,10 +442,22 @@ ORDER BY
 - Monthly volatility makes more sense when viewed alongside yearly trends
 - Country and industry context is essential to understanding raw layoff numbers
 
----
+
+## Conclusion
+This analysis shows that layoffs are not driven by a single factor, but by a combination of **timing, geography, and industry dynamics**. While certain periods experienced sharp, short-term spikes driven by economic shocks, broader year-over-year trends provide essential context for understanding those fluctuations.
+
+Geographically, layoffs are heavily concentrated in a small number of countries, with the United States leading most months, though leadership occasionally shifts during region-specific disruptions. At the industry level, the data reveals a clear distinction between **frequency** and **severity**: some industries experience layoffs repeatedly in smaller waves, while others are impacted through fewer but significantly larger events.
+
+By combining time-series analysis, statistical classification, and industry-level metrics, this project demonstrates how raw layoff counts can be transformed into actionable insights. These findings highlight the importance of analyzing workforce reductions from multiple angles rather than relying on single summary metrics.
+
 
 ## Dataset
 Public layoffs dataset, cleaned and standardized for analysis.
+
+## Signed By:
+**Daris Daniel Abad**
+
+
 
 
 
