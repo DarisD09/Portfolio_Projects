@@ -455,7 +455,7 @@ By combining time-series analysis, statistical classification, and industry-leve
 Public layoffs dataset, cleaned and standardized for analysis.
 
 ## Signed By:
-**Daris Daniel Abad**
+**Daris Daniel**
 
 
 
